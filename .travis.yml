@@ -7,6 +7,7 @@ before_install:
   #- "sudo dpkg -r chromium-browser-l10n"
   #- "sudo dpkg -r chromium-codecs-ffmpeg"
   #- "sudo dpkg -r chromium-browser"
+
   - "Xvfb :99 > /dev/null &"
 install: "npm install"
 cache:

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jsdevel/webdriver-sync.png)](https://travis-ci.org/jsdevel/webdriver-sync)
+[![Build Status](https://travis-ci.org/jsdevel/travis-debugging.png)](https://travis-ci.org/jsdevel/travis-debugging)
 
 # webdriver-sync
 
