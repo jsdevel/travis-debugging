@@ -1,0 +1,9 @@
+/nbproject/
+/node_modules/
+/reports/
+/chromedriver.log
+/src/java/webdriversynchelpers/nbproject/
+/src/java/webdriversynchelpers/build/
+
+.DS_Store
+/src/java/webdriversynchelpers/dist/

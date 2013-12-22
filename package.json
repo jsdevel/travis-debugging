@@ -1,0 +1,56 @@
+{
+  "name": "webdriver-sync",
+  "version": "0.8.1",
+  "description": "Porting the Java WebDriver to node for a completely synchronous selenium experience in node.js!",
+  "main": "src/webdriver-sync.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint-src":"node_modules/.bin/jshint --config .jshintrc src/**/*.js",
+    "lint-test":"node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
+    "mocha":"node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
+    "test": "npm run-script lint-src && npm run-script lint-test && npm run-script mocha",
+    "preinstall": "node bin/install.js",
+    "install": "node bin/postInstall.js"
+  },
+  "dependencies": {
+    "async": "~0.2.9",
+    "download": "~0.1.7",
+    "java": "~0.2.9",
+    "unzip": "~0.1.9",
+    "which": "~1.0.5"
+  },
+  "devDependencies": [
+    "jshint",
+    "mocha",
+    "proxyquire",
+    "sinon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsdevel/webdriver-sync.git"
+  },
+  "keywords": [
+    "webdriver",
+    "selenium",
+    "testing",
+    "sync",
+    "synchronous",
+    "api",
+    "chrome",
+    "safari",
+    "internet explorer",
+    "explorer",
+    "internet",
+    "ie",
+    "driver",
+    "node",
+    "javascript"
+  ],
+  "author": "Joseph Spencer",
+  "license": "MIT license (MIT)",
+  "bugs": {
+    "url": "https://github.com/jsdevel/webdriver-sync/issues"
+  }
+}
