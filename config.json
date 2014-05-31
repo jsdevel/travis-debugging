@@ -1,10 +1,10 @@
 {
   "selenium": {
-    "jar":"selenium-server-standalone-2.39.0.jar",
-    "url":"https://selenium.googlecode.com/files/"
+    "jar":"selenium-server-standalone-2.41.0.jar",
+    "url":"http://selenium-release.storage.googleapis.com/2.41/"
   },
   "chromedriver": {
     "zip":"chromedriver_${arch}.zip",
-    "url":"http://chromedriver.storage.googleapis.com/2.8/"
+    "url":"http://chromedriver.storage.googleapis.com/2.10/"
   }
 }

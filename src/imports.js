@@ -1,23 +1,26 @@
-var java = require("java");
-var path = require("path");
+'use strict';
+
+var java = require('java');
+var path = require('path');
 var classPaths = require('./classPaths');
 var findsChromeDriver = require('./lib/finds-chrome-driver');
 var findsSeleniumJar = require('./lib/finds-selenium-jar');
 var staticDependencyPaths = require('./static-dependency-paths');
+var seleniumJar = findsSeleniumJar.find();
 
-var seleniumJar = findsSeleniumJar.find()
 if(!seleniumJar) {
-  throw new Error(findsSeleniumJar.errorMessage)
+  throw new Error(findsSeleniumJar.errorMessage);
 }
+
 java.classpath.push(seleniumJar);
 java.classpath.push(staticDependencyPaths.helperJar);
 
-chromeDriverPath = findsChromeDriver.find()
+var chromeDriverPath = findsChromeDriver.find();
 if(chromeDriverPath) {
   java.callStaticMethodSync(
-    "java.lang.System",
-    "setProperty",
-    "webdriver.chrome.driver",
+    'java.lang.System',
+    'setProperty',
+    'webdriver.chrome.driver',
     chromeDriverPath
   );
 }
@@ -59,6 +62,9 @@ if(chromeDriverPath) {
 
 module.exports = {
   helpers: {
+    get ConsoleControl() {
+      return java.import('me.joespencer.webdriversynchelpers.ConsoleControl');
+    },
     get Map() {
       return java.import('me.joespencer.webdriversynchelpers.Map');
     }
@@ -108,6 +114,9 @@ module.exports = {
   get FirefoxDriver() {
     return java.import(classPaths.FirefoxDriver);
   },
+  get FirefoxProfile() {
+    return java.import(classPaths.FirefoxProfile);
+  },
   get PhantomJSDriver() {
     return java.import(classPaths.PhantomJSDriver);
   },
@@ -117,8 +126,14 @@ module.exports = {
   get InternetExplorerDriver() {
     return java.import(classPaths.InternetExplorerDriver);
   },
+  get Keys() {
+    return java.import(classPaths.Keys);
+  },
   get Level() {
     return java.import(classPaths.Level);
+  },
+  get LogEntry() {
+    return java.import(classPaths.LogEntry);
   },
   get LocalFileDetector() {
     return java.import(classPaths.LocalFileDetector);

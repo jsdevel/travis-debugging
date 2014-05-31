@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').DesiredCapabilities;
 var Capabilities = require('../interfaces/Capabilities');
 var Instance = require('../classes/Instance');
@@ -16,10 +18,10 @@ function DesiredCapabilities(
   capabilities
   ) {
   var instance;
-  if (assert(capabilities).isInstanceof(Instance).isValid) {
+  if (assert(capabilities).extends(Instance).isValid) {
     instance = capabilities._instance;
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 DesiredCapabilities.android =
   DesiredCapabilities.prototype.android = function() {

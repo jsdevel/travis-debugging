@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   By: 'org.openqa.selenium.By',
   ChromeDriver: 'org.openqa.selenium.chrome.ChromeDriver',
@@ -14,13 +16,17 @@ module.exports = {
   ExpectedConditions: 'org.openqa.selenium.support.ui.ExpectedConditions',
   File: 'java.io.File',
   FirefoxDriver: 'org.openqa.selenium.firefox.FirefoxDriver',
+  FirefoxProfile: 'org.openqa.selenium.firefox.FirefoxProfile',
   PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
   HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',
   InternetExplorerDriver: 'org.openqa.selenium.ie.InternetExplorerDriver',
+  Keys: 'org.openqa.selenium.Keys',
   Level: 'java.util.logging.Level',
   List: 'java.util.List',
   LocalFileDetector: 'org.openqa.selenium.remote.LocalFileDetector',
+  LogEntry: 'org.openqa.selenium.logging.LogEntry',
   Long: 'java.lang.Long',
+  Map: 'java.util.Map',
   OutputType: 'org.openqa.selenium.OutputType',
   Platform: 'org.openqa.selenium.Platform',
   Point: 'org.openqa.selenium.Point',

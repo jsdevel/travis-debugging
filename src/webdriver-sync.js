@@ -1,6 +1,16 @@
+'use strict';
+
 var java = require('java');
 var imports = require('./imports');
 var Long = imports.Long;
+
+if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT){
+  imports.helpers.ConsoleControl.stopOutSync();
+}
+
+if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDERR){
+  imports.helpers.ConsoleControl.stopErrSync();
+}
 
 module.exports = {
 
@@ -12,7 +22,7 @@ module.exports = {
   //===BEGIN WRAPPERS==//
   //CLASSES
   get By() {
-    return new (require('./classes/By'));
+    return new (require('./classes/By'))();
   },
   get ChromeDriver() {
     return require('./classes/ChromeDriver');
@@ -50,6 +60,9 @@ module.exports = {
   get FirefoxDriver() {
     return require('./classes/FirefoxDriver');
   },
+  get FirefoxProfile() {
+    return require('./classes/FirefoxProfile');
+  },
   get PhantomJSDriver() {
     return require('./classes/PhantomJSDriver');
   },
@@ -61,6 +74,9 @@ module.exports = {
   },
   get Level() {
     return require('./classes/Level');
+  },
+  get LogEntry() {
+    return require('./classes/LogEntry');
   },
   get LocalFileDetector() {
     return require('./classes/LocalFileDetector');
@@ -89,8 +105,14 @@ module.exports = {
   get UserAndPassword() {
     return require('./classes/UserAndPassword');
   },
+  get WebDriverWait() {
+    return require('./classes/WebDriverWait');
+  },
 
   //ENUMS
+  get Keys() {
+    return require('./enums/Keys');
+  },
   get Platform() {
     return require('./enums/Platform');
   },
@@ -99,17 +121,34 @@ module.exports = {
   },
 
   //INTERFACES
+  get OutputType() {
+    return require('./interfaces/OutputType');
+  },
   get WebElement() {
     return require('./interfaces/WebElement');
   },
   //===END WRAPPERS==//
 
   //UTILITY METHODS
-  importTo: function(target) {
+  importTo:function(target){
+    console.warn('#importTo is deprecated!  Use #exportTo instead.');
+    return this.exportTo(target);
+  },
+
+  /**
+   * Use this method to expose all Selenium Classes to the given target.
+   * Useful if you wish to avoid wd.blablabla.
+   *
+   * @param {Object} target
+   */
+  exportTo: function(target) {
+    var prop;
     for (prop in this) {
-      if (prop === 'importTo')
-        continue;
-      target[prop] = this[prop];
+      if(this.hasOwnProperty(prop)){
+        if (prop[0].toLowerCase() !== prop[0]){//upercase so export
+          target[prop] = this[prop];
+        }
+      }
     }
   },
   /**

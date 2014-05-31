@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').ChromeDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var ChromeDriverService = require('./ChromeDriverService');
@@ -15,7 +17,7 @@ extendAll(
   ChromeDriver,
   TakesScreenshot,
   RemoteWebDriver
-  );
+);
 
 function ChromeDriver(
   capabilitiesOrOptionsOrChromeDriverService,
@@ -27,9 +29,9 @@ function ChromeDriver(
 
   if(!findsChromeDriver.find()) {
     throw new Error([
-      "`chromedriver` could not be found on the PATH.",
-      "Download Chrome driver from:",
-      "http://chromedriver.storage.googleapis.com/index.html"
+      '`chromedriver` could not be found on the PATH.',
+      'Download Chrome driver from:',
+      'http://chromedriver.storage.googleapis.com/index.html'
     ].join(' '));
   }
 
@@ -37,33 +39,33 @@ function ChromeDriver(
     instance = new Class();
   } else if (len === 1 || len === 2) {
     assert(first)
-      .isInstanceof(Capabilities)
+      .extends(Capabilities)
       .or(ChromeOptions)
       .or(ChromeDriverService)
       .throws(
-        "The first argument must be an instance of " +
-        "Capabilities, ChromeDriverService or ChromeOptions."
+        'The first argument must be an instance of ' +
+        'Capabilities, ChromeDriverService or ChromeOptions.'
         );
     if (len === 1) {
       instance = new Class(first._instance);
     } else if (len === 2) {
       assert(first)
-        .isInstanceof(ChromeDriverService)
+        .extends(ChromeDriverService)
         .throws(
-          "The first argument must be an instance of ChromeDriverService."
+          'The first argument must be an instance of ChromeDriverService.'
           );
       assert(capabilitiesOrOptions)
-        .isInstanceof(Capabilities)
+        .extends(Capabilities)
         .or(ChromeOptions)
         .throws(
-          "The second argument must be an instance of "+
-          "Capabilities or ChromeOptions."
+          'The second argument must be an instance of '+
+          'Capabilities or ChromeOptions.'
           );
       instance = new Class(first._instance, capabilitiesOrOptions._instance);
     }
   } else {
-    throw new Error("The wrong number of arguments was given.");
+    throw new Error('The wrong number of arguments was given.');
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
