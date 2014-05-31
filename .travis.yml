@@ -2,14 +2,24 @@ language: node_js
 node_js:
   - "0.10"
 before_install:
-  #- "find / -maxdepth 5"
-  #- "sudo dpkg --get-selections | grep 'chromium'"
-  #- "sudo dpkg -r chromium-browser-l10n"
-  #- "sudo dpkg -r chromium-codecs-ffmpeg"
-  #- "sudo dpkg -r chromium-browser"
-  - "Xvfb :99 > /dev/null &"
-
-
+  - "sudo apt-get remove chromium-browser"
+  - "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections"
+  - "sudo apt-get install ttf-mscorefonts-installer"
+  - "sudo apt-get install x-ttcidfont-conf"
+  - "sudo mkfontdir"
+  - "sudo apt-get install defoma libgl1-mesa-dri xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic"
+  - "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+  - "sudo mkdir -p /usr/share/desktop-directories"
+  - "sudo dpkg -i google-chrome-stable_current_amd64.deb"
+  - "sudo apt-get install -f"
+  - "sudo dpkg -i google-chrome-stable_current_amd64.deb"
+  - "export CHROME_SANDBOX=/opt/google/chrome/chrome-sandbox"
+  - "sudo rm -f $CHROME_SANDBOX"
+  - "sudo wget https://googledrive.com/host/0B5VlNZ_Rvdw6NTJoZDBSVy1ZdkE -O $CHROME_SANDBOX"
+  - "sudo chown root:root $CHROME_SANDBOX; sudo chmod 4755 $CHROME_SANDBOX"
+  - "sudo md5sum $CHROME_SANDBOX"
+  - "sudo chmod 1777 /dev/shm"
+  - "./.travis-start.bash"
 install: "npm install"
 cache:
   directories:
